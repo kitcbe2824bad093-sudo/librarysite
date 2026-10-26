@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Knowledge Hub Library - Your premier gateway to knowledge in Coimbatore. Explore thousands of curated books across Programming, Science, History, Fiction, Finance, and Biographies.">
+  <meta name="keywords" content="Knowledge Hub Library, Coimbatore library, borrow books, study lounge, programming books, scientific literature">
+  <meta name="author" content="Knowledge Hub Library">
+  
+  <title>Knowledge Hub Library | Your Gateway to Knowledge</title>
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Top Announcement & Schedule Bar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-info">
+        <span id="libraryStatusChip" class="status-badge">
+          <span class="status-pulse"></span>
+          <span>Checking hours...</span>
+        </span>
+        <span>📍 Gandhipuram, Coimbatore, Tamil Nadu</span>
+      </div>
+      <div class="topbar-info">
+        <a href="tel:+919876543210" style="color: inherit;">📞 +91 98765 43210</a>
+        <span style="opacity: 0.4;">|</span>
+        <a href="mailto:library@example.com" style="color: inherit;">✉️ library@example.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Sticky Navigation -->
+  <header class="navbar" id="mainHeader">
+    <div class="container">
+      <a href="index.html" class="brand-logo" aria-label="Knowledge Hub Library Homepage">
+        <span class="logo-icon">📚</span>
+        <div class="brand-text">
+          <h1>Knowledge Hub</h1>
+          <span>Library &amp; Study Sanctuary</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="#books" class="nav-link">Books Catalog</a></li>
+          <li><a href="#categories" class="nav-link">Categories</a></li>
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="shelf.html" class="nav-link">My Borrowed Shelf</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Utility Actions -->
+      <div class="nav-actions">
+        <!-- Theme Toggle (Dark/Light) -->
+        <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+          🌙
+        </button>
+
+        <!-- Direct Link to Next Page: Borrowed Shelf -->
+        <a href="shelf.html" class="icon-btn" title="View Borrowed Shelf (Next Page)" aria-label="View borrowed books on shelf page">
+          📖
+          <span id="borrowBadge" class="badge-count" style="display: none;">0</span>
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobileToggleBtn" class="mobile-toggle icon-btn" aria-label="Open mobile menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section with Atmospheric Visuals -->
+    <section class="hero-section" id="home">
+      <div class="hero-bg" style="background-image: url('images/library_hero.jpg');"></div>
+      <div class="hero-overlay"></div>
+      
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-tagline">
+            <span>✨</span> Curated Knowledge Sanctuary · Est. 1998
+          </div>
+
+          <h2 class="hero-title">
+            Your Gateway to <span class="highlight">Endless Discovery</span>
+          </h2>
+
+          <p class="hero-description">
+            Immerse yourself in thousands of masterworks, from groundbreaking software engineering and deep sciences to timeless literature and profound biographies.
+          </p>
+
+          <!-- Interactive Live Search Container -->
+          <div class="search-container">
+            <div class="search-box-wrapper">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Search by title, author, category, or keyword..." 
+                aria-label="Search library books"
+                autocomplete="off"
+              >
+              <button id="searchClearBtn" class="search-clear-btn" title="Clear search">✕</button>
+              <span class="search-hotkey">Press /</span>
+              <button class="search-btn" onclick="document.getElementById('books').scrollIntoView({behavior: 'smooth'})">
+                Explore
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero Metrics Bar -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-value">15,000+</div>
+              <div class="stat-label">Volumes in Stock</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">120+</div>
+              <div class="stat-label">Study Desks</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">4.9 / 5</div>
+              <div class="stat-label">Member Rating</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">6 Days</div>
+              <div class="stat-label">Open Weekly</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Books Catalog Section -->
+    <section class="section" id="books">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Curated Collection</span>
+          <h2 class="section-title">Explore Popular Books</h2>
+          <p class="section-lead">
+            Click on any title or cover to view comprehensive details on its dedicated page, or borrow directly.
+          </p>
+        </div>
+
+        <!-- Filter Pills Bar -->
+        <div class="filter-wrapper">
+          <div class="category-pills" role="tablist" aria-label="Book Categories">
+            <button class="category-pill active" data-category="All" role="tab" aria-selected="true">All Volumes</button>
+            <button class="category-pill" data-category="Programming" role="tab" aria-selected="false">💻 Programming</button>
+            <button class="category-pill" data-category="Science" role="tab" aria-selected="false">🔬 Science</button>
+            <button class="category-pill" data-category="History" role="tab" aria-selected="false">📜 History</button>
+            <button class="category-pill" data-category="Fiction" role="tab" aria-selected="false">📖 Fiction</button>
+            <button class="category-pill" data-category="Finance" role="tab" aria-selected="false">💰 Finance</button>
+            <button class="category-pill" data-category="Biography" role="tab" aria-selected="false">📕 Biography</button>
+            <button class="category-pill" data-category="General Knowledge" role="tab" aria-selected="false">⚡ General Knowledge</button>
+          </div>
+
+          <!-- Catalog Toolbar (Counter & Sorter) -->
+          <div class="catalog-toolbar">
+            <span id="catalogCount" class="catalog-count">Loading collection...</span>
+
+            <div class="catalog-sort">
+              <label for="sortSelect">Sort By:</label>
+              <select id="sortSelect" class="sort-select" aria-label="Sort books by">
+                <option value="popular">Most Popular &amp; Highly Rated</option>
+                <option value="rating">Highest Rating</option>
+                <option value="title-asc">Title: A to Z</option>
+                <option value="title-desc">Title: Z to A</option>
+                <option value="newest">Publication Year</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Books Grid -->
+        <div id="booksGrid" class="books-grid" aria-live="polite">
+          <!-- Populated dynamically via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Categories Showcase -->
+    <section class="section section-alt" id="categories">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Diverse Fields of Study</span>
+          <h2 class="section-title">Browse By Category</h2>
+          <p class="section-lead">
+            Delve into focused domains curated by our master librarians.
+          </p>
+        </div>
+
+        <div class="category-cards-grid">
+          <div class="category-card" onclick="selectCategoryFromShowcase('Programming')">
+            <div class="cat-icon-circle">💻</div>
+            <h3>Programming</h3>
+            <p>Java, Python, Algorithms, Web Architecture &amp; System Design</p>
+          </div>
+
+          <div class="category-card" onclick="selectCategoryFromShowcase('Science')">
+            <div class="cat-icon-circle">🔬</div>
+            <h3>Science</h3>
+            <p>Astrophysics, Quantum Mechanics, Genetics &amp; Earth Sciences</p>
+          </div>
+
+          <div class="category-card" onclick="selectCategoryFromShowcase('History')">
+            <div class="cat-icon-circle">📜</div>
+            <h3>History</h3>
+            <p>Ancient Civilizations, Modern India, World Wars &amp; Philosophy</p>
+          </div>
+
+          <div class="category-card" onclick="selectCategoryFromShowcase('Fiction')">
+            <div class="cat-icon-circle">📖</div>
+            <h3>Fiction</h3>
+            <p>Classic Literature, Psychological Dramas &amp; Modern Novels</p>
+          </div>
+
+          <div class="category-card" onclick="selectCategoryFromShowcase('Finance')">
+            <div class="cat-icon-circle">💰</div>
+            <h3>Finance</h3>
+            <p>Wealth Psychology, Personal Investing &amp; Economics</p>
+          </div>
+
+          <div class="category-card" onclick="selectCategoryFromShowcase('Biography')">
+            <div class="cat-icon-circle">📕</div>
+            <h3>Biography</h3>
+            <p>Visionary Leaders, Scientists, Innovators &amp; Statesmen</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section with High-Resolution Image -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image-wrapper">
+            <img src="images/library_study.jpg" alt="Knowledge Hub Library Sunlit Modern Study Lounge" loading="lazy">
+            <div class="about-badge-float">
+              <strong>28+ Years</strong>
+              <span>Inspiring Thinkers &amp; Scholars</span>
+            </div>
+          </div>
+
+          <div class="about-content">
+            <span class="section-subtitle">About Our Institution</span>
+            <h2>A Sanctuary for Thinkers, Learners &amp; Visionaries</h2>
+            <p>
+              Knowledge Hub Library is more than rows of bookshelves; it is an active ecosystem designed to foster deep focus, intellectual curiosity, and lifelong academic achievement in Coimbatore.
+            </p>
+
+            <div class="about-features-list">
+              <div class="about-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Silent Study Desks with Power Sockets</span>
+              </div>
+              <div class="about-feature-item">
+                <span class="feature-check">✓</span>
+                <span>High-Speed Dedicated Fiber Wi-Fi</span>
+              </div>
+              <div class="about-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Digital E-Book &amp; Audio Catalog</span>
+              </div>
+              <div class="about-feature-item">
+                <span class="feature-check">✓</span>
+                <span>Regular Author Meets &amp; Book Clubs</span>
+              </div>
+            </div>
+
+            <!-- Operating Hours Highlight Card -->
+            <div class="hours-card">
+              <div class="hours-info">
+                <h4>Operating Hours</h4>
+                <p>Monday – Saturday: <strong>9:00 AM – 6:00 PM</strong></p>
+                <p style="color: var(--text-muted); font-size: 0.78rem;">Sundays &amp; Public Holidays: Closed for Maintenance</p>
+              </div>
+              <a href="#contact" class="btn-borrow" style="padding: 8px 16px; font-size: 0.85rem;">
+                Visit Us Today
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Inquiries Section -->
+    <section class="section section-alt" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Get In Touch</span>
+          <h2 class="section-title">Connect With Our Librarians</h2>
+          <p class="section-lead">
+            Have a question about membership, book reservations, or quiet workspace bookings? We are here to assist.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Information Cards -->
+          <div class="contact-info-cards">
+            <div class="info-card">
+              <div class="info-icon">📍</div>
+              <div class="info-details">
+                <h4>Library Location</h4>
+                <p>Knowledge Hub Library, Gandhipuram, Coimbatore, Tamil Nadu, 641012</p>
+                <button class="copy-btn" onclick="copyToClipboard('Knowledge Hub Library, Gandhipuram, Coimbatore, Tamil Nadu, 641012', 'Address')">
+                  📋 Copy Address
+                </button>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon">📞</div>
+              <div class="info-details">
+                <h4>Telephone Desk</h4>
+                <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                <button class="copy-btn" onclick="copyToClipboard('+919876543210', 'Phone number')">
+                  📋 Copy Number
+                </button>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon">✉️</div>
+              <div class="info-details">
+                <h4>Electronic Mail</h4>
+                <p><a href="mailto:library@example.com">library@example.com</a></p>
+                <button class="copy-btn" onclick="copyToClipboard('library@example.com', 'Email')">
+                  📋 Copy Email
+                </button>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon">🕒</div>
+              <div class="info-details">
+                <h4>Visiting Hours</h4>
+                <p>Monday – Saturday: 9:00 AM – 6:00 PM</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Sunday: Closed</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact / Book Request Form -->
+          <div class="contact-form-card">
+            <h3>Send a Message or Request a Title</h3>
+            <p>Fill out the form below and our head librarian will respond within 24 hours.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactName">Your Full Name *</label>
+                  <input type="text" id="contactName" class="form-control" placeholder="e.g. Anand Kumar" required>
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Email Address *</label>
+                  <input type="email" id="contactEmail" class="form-control" placeholder="anand@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactSubject">Inquiry Topic</label>
+                <select id="contactSubject" class="form-control">
+                  <option value="book-request">Request a New Book / Edition</option>
+                  <option value="membership">Library Membership &amp; Cards</option>
+                  <option value="desk-booking">Study Desk &amp; Room Booking</option>
+                  <option value="general">General Inquiry / Feedback</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage">Message or Book Details *</label>
+                <textarea id="contactMessage" class="form-control" rows="4" placeholder="Mention ISBN, title, author or your inquiry details here..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                <span>✉️ Send Inquiry</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>📚 Knowledge Hub Library</h3>
+          <p>
+            Coimbatore's premier public and academic reading sanctuary. Empowering readers, scholars, and innovators through open access to global literature and ideas.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#books">Books Catalog</a></li>
+            <li><a href="#categories">Browse Categories</a></li>
+            <li><a href="shelf.html">My Borrowed Shelf</a></li>
+            <li><a href="#about">About Our Mission</a></li>
+            <li><a href="#contact">Contact &amp; Hours</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Disciplines</h4>
+          <ul class="footer-links">
+            <li><a href="#books" onclick="selectCategoryFromShowcase('Programming')">Computer Science</a></li>
+            <li><a href="#books" onclick="selectCategoryFromShowcase('Science')">Scientific Research</a></li>
+            <li><a href="#books" onclick="selectCategoryFromShowcase('History')">Historical Records</a></li>
+            <li><a href="#books" onclick="selectCategoryFromShowcase('Finance')">Financial Literacy</a></li>
+            <li><a href="#books" onclick="selectCategoryFromShowcase('Biography')">Biographies &amp; Memoirs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Library Desk</h4>
+          <p style="font-size: 0.88rem; line-height: 1.6; margin-bottom: 12px; color: rgba(255,255,255,0.7);">
+            Knowledge Hub Library<br>
+            Gandhipuram, Coimbatore<br>
+            Tamil Nadu, India
+          </p>
+          <p style="font-size: 0.85rem; color: var(--accent-light);">
+            🕒 Mon–Sat: 9:00 AM – 6:00 PM
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Knowledge Hub Library | All Rights Reserved</p>
+        <p>Built with ❤️ for passionate readers and lifelong learners</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Back to Top Floating Button -->
+  <button id="backToTopBtn" class="back-to-top" title="Scroll to top" aria-label="Back to top">
+    ↑
+  </button>
+
+  <!-- Application Logic -->
+  <script src="books-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
